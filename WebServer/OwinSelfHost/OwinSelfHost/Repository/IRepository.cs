@@ -5,6 +5,13 @@ namespace OwinSelfHost.Repository
 {
     public interface IRepository
     {
-        List<Department> GetAllDepartments();
+        IList<Department> GetAllDepartments();
+
+        Department GetDepartment(string name);
+
+        void AddDepartment(Department department);
+
+        void ClearDepartments();
+
     }
 }

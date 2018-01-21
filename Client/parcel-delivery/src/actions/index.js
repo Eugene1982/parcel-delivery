@@ -1,5 +1,5 @@
 import * as API from '../utils/API'
-import { GET_DEPARTMENTS } from '../utils/constants'
+import { GET_DEPARTMENTS, ADD_DEPARTMENT } from '../utils/constants'
 
 
 export function getDepartments() {
@@ -12,6 +12,18 @@ export function getDepartments() {
       })
     }
   }
+
+  export function addDepartment(department) {
+    return dispatch => {
+      API.addDepartment(department).then(p => {
+        dispatch({
+          type: ADD_DEPARTMENT,
+          post: p
+        })
+      })
+    }
+  }
+  
   
 
 

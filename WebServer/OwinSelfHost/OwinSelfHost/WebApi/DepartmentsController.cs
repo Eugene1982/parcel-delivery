@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
 using OwinSelfHost.Domain;
 using OwinSelfHost.Repository;
@@ -13,29 +14,26 @@ namespace OwinSelfHost.WebApi
             this.repository = repository;
         }
 
-        // GET api/values 
+        // GET api/departments 
         public IEnumerable<Department> Get()
         {
             return repository.GetAllDepartments();
         }
 
-        // GET api/values/5 
-        public string Get(int id)
+        // GET api/departments/name 
+        public Department Get(string name)
         {
-            return "value";
+            return repository.GetDepartment(name);
         }
 
-        // POST api/values 
-        public void Post([FromBody]string value)
+        // POST api/departments 
+        public void Post([FromBody]Department department)
         {
+            department.CreatedAt = DateTime.Now;
+            repository.AddDepartment(department);
         }
 
-        // PUT api/values/5 
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5 
+       // DELETE api/departments/5 
         public void Delete(int id)
         {
         }
