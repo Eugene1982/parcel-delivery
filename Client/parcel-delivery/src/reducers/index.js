@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux'
 
 import departments from './departments'
-
+import parcels from './parcels'
 
 const rootReducer = combineReducers({
-    departments
+    departments,
+    parcels
 })
 
 export default rootReducer

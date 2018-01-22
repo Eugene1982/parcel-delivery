@@ -107,6 +107,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\DistributeParcels.cs" />
+    <Compile Include="Domain\IDistributeParcels.cs" />
+    <Compile Include="Domain\Parcel.cs" />
+    <Compile Include="Domain\Receipient.cs" />
+    <Compile Include="Domain\Sender.cs" />
     <Compile Include="Helpers\Extension.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
@@ -117,6 +122,7 @@
     <Compile Include="Storage\DefaultData.cs" />
     <Compile Include="Storage\DocumentStoreHolder.cs" />
     <Compile Include="WebApi\DepartmentsController.cs" />
+    <Compile Include="WebApi\ParcelsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

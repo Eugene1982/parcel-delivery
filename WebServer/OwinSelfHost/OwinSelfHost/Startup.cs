@@ -45,6 +45,7 @@ namespace OwinSelfHost
             var builder = new ContainerBuilder();
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterType<Repository.Repository>().As<IRepository>();
+            builder.RegisterType<DistributeParcels>().As<IDistributeParcels>();
             builder.Register(c => DocumentStoreHolder.Store.OpenSession()).As<IDocumentSession>().InstancePerDependency();
             return builder.Build();
         }
