@@ -46,6 +46,7 @@ namespace OwinSelfHost
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterType<Repository.Repository>().As<IRepository>();
             builder.RegisterType<DistributeParcels>().As<IDistributeParcels>();
+            builder.RegisterType<Parser>().As<IParser>();
             builder.Register(c => DocumentStoreHolder.Store.OpenSession()).As<IDocumentSession>().InstancePerDependency();
             return builder.Build();
         }

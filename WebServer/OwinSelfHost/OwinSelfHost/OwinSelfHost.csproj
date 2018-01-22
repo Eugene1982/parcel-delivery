@@ -113,6 +113,8 @@
     <Compile Include="Domain\Receipient.cs" />
     <Compile Include="Domain\Sender.cs" />
     <Compile Include="Helpers\Extension.cs" />
+    <Compile Include="Helpers\IParser.cs" />
+    <Compile Include="Helpers\Parser.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Domain\Department.cs" />
