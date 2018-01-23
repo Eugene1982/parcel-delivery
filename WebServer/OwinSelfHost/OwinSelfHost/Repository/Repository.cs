@@ -26,7 +26,6 @@ namespace OwinSelfHost.Repository
 
         public Department GetDepartment(string name)
         {
-
             return session
                 .Query<Department>().FirstOrDefault(d => d.Name == name);
 

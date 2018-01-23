@@ -4,8 +4,8 @@
     {
         public double Weight { get; set; }
         public double Price { get; set; }
-        public Sender From { get; set; }
-        public Receipient To { get; set; }
+        public Contact From { get; set; }
+        public Contact To { get; set; }
         public string DepartmentName { get; set; }
     }
 }
