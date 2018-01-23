@@ -5,7 +5,7 @@ export default function parcels(state = [], action) {
         case UPLOAD_DOCUMENT_SUCCESS:
             return action.parcels
         case CLEAR_RESULTS:
-             return []    
+            return []
         default:
             return state
     }

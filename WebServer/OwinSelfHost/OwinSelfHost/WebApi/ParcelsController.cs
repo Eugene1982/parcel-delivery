@@ -23,7 +23,7 @@ namespace OwinSelfHost.WebApi
         // POST api/parcels 
         public async Task<HttpResponseMessage> Post(HttpRequestMessage request)
         {
-            HttpResponseMessage resp = new HttpResponseMessage(HttpStatusCode.OK);
+            HttpResponseMessage httpResponseMessage = new HttpResponseMessage(HttpStatusCode.OK);
             try
             {
                 Stream contentStream = await request.Content.ReadAsStreamAsync();
@@ -32,13 +32,18 @@ namespace OwinSelfHost.WebApi
                 Parcel[] reply = distribute.Distribute(reader.ReadToEnd());
 
                 string json = await Task.Run(() => JsonConvert.SerializeObject(reply));
-                resp.Content = new StringContent(json, Encoding.UTF8, "application/json");
+                httpResponseMessage.Content = new StringContent(json, Encoding.UTF8, "application/json");
             }
             catch (Exception exception)
             {
-
+                HttpResponseMessage erroResponseMessage =
+                    new HttpResponseMessage(HttpStatusCode.InternalServerError)
+                    {
+                        Content = new StringContent(exception.Message)
+                    };
+                return erroResponseMessage;
             }
-            return resp;
+            return httpResponseMessage;
         }
 
     }

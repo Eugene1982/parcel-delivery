@@ -40,3 +40,76 @@ body {
   margin-bottom: 5px;
   width: 500px;
 }
+
+.dep-list div {
+  width: 800px;
+}
+ 
+.dep-list h3 {
+  font: 300 30px/1.5 Helvetica, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+ 
+.dep-list ul {
+  list-style-type: none;
+  margin: 5px;
+  padding: 5px;
+  background: rgb(241, 222, 180)
+}
+ 
+.dep-list li {
+  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  border-bottom: 1px solid #ccc;
+}
+ 
+.dep-list li:last-child {
+  border: none;
+}
+ 
+.dep-list li a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+ 
+  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+  transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+ 
+.dep-list li a:hover {
+  font-size: 30px;
+  background:  rgb(196, 164, 26);
+}
+
+.dep-detail {
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  margin: 10px 10px 10px 10px;
+  border: 1px solid rgb(145, 7, 7);
+  padding: 20px;
+  width: 800px;
+  background: rgb(196, 164, 26);
+  box-shadow: inset 0px 0px 15px #FFE5E5;
+  -moz-box-shadow: inset 0px 0px 15px #FFE5E5;
+  -webkit-box-shadow: inset 0px 0px 15px #FFE5E5;
+}
+
+.detail-counter{
+  font: 100 15px/1.5 Helvetica, Verdana, sans-serif;
+  color: rgba(114, 105, 105, 0.534)
+}
+
+.detail-counter p {
+  color: rgba(73, 5, 119, 0.534);
+  font-size: 20px;
+  display: inline;
+}
+
+.error-message {
+  color: red;
+}
+

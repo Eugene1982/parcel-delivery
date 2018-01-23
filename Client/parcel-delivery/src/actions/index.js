@@ -34,7 +34,7 @@ export function uploadSuccess(parcels) {
 export function uploadFail(error) {
     return {
         type: UPLOAD_DOCUMENT_FAIL,
-        error,
+        error: error.message,
     };
 }
 

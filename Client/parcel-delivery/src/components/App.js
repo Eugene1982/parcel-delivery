@@ -40,25 +40,41 @@ class App extends Component {
     return parcels.filter(parcel => parcel.DepartmentName === name).length
   }
 
+  clear = () => {
+    const { dispatch } = this.props
+    dispatch(clearParcels())
+  }
+
   render() {
-    const { departments, parcels } = this.props
+    const { departments, parcels, error } = this.props
     const { modalOpen } = this.state
+   
+    if (error) {
+      return (
+        <div>
+          <div className="error-message">Server Error: {error}</div>
+          <Link to="/" onClick={this.clear}>Return to main page</Link>
+        </div>
+      )
+    }
     return (
 
       <div>
         <Route exact path="/" render={() => (
-          <div>
-            <input type="file" onChange={this.handleFileUpload} />
+          <div className="dep-list">
+            Parcels: <input type="file" onChange={this.handleFileUpload} />
+            <h3>Departments</h3>
             <ul>
               {departments.map((item) => (
-               <li key={item.Name}>
-                  <Link to={`/${item.Name}`}> {item.Name}  - {this.getParcelsCounter(item.Name)}</Link>
+                <li key={item.Name}>
+                  <Link to={`/${item.Name}`}> {item.Name}
+                    <div className="detail-counter">Amount: <p>{this.getParcelsCounter(item.Name)}</p></div>
+                  </Link>
                 </li>
               ))}
             </ul>
             <div>
               <button onClick={() => this.openModal()}>Add Department</button>
-              <button>Delete Department</button>
             </div>
 
 
@@ -74,20 +90,21 @@ class App extends Component {
 
           </div>
         )} />
-        <Route exact path="/:departmentName" render={(props) => 
-          (<ParcelDetail departmentName={props.match.params.departmentName} parcels={parcels}/>)
-          } />
-    
+        <Route exact path="/:departmentName" render={(props) =>
+          (<ParcelDetail departmentName={props.match.params.departmentName} parcels={parcels} />)
+        } />
+
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  const { departments, parcels } = state
+  const { departments, parcels, error } = state
   return {
     departments,
-    parcels
+    parcels,
+    error
   }
 }
 
