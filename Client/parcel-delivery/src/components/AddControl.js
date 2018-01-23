@@ -14,7 +14,7 @@ export default function AddControl({ department, saveDepartment }) {
         <div>
             <form onSubmit={handleSubmit} className="create-contact-form">
                     <div>
-                        <h3>Add post</h3>
+                        <h3>Add Department</h3>
                         <input type="text" name="Name" className="text-editor" placeholder="Name" /><br />
                         <input type="text" name="WeightMin" className="editor-field" placeholder="Weight From" /><br />
                         <input type="text" name="WeightMax" className="editor-field" placeholder="Weight To" /><br />

@@ -1,5 +1,5 @@
 import * as API from '../utils/API'
-import { GET_DEPARTMENTS, ADD_DEPARTMENT, UPLOAD_DOCUMENT_SUCCESS, UPLOAD_DOCUMENT_FAIL } from '../utils/constants'
+import { GET_DEPARTMENTS, ADD_DEPARTMENT, UPLOAD_DOCUMENT_SUCCESS, UPLOAD_DOCUMENT_FAIL, CLEAR_RESULTS } from '../utils/constants'
 
 
 export function getDepartments() {
@@ -43,6 +43,12 @@ export function uploadParcels(file) {
         API.sendParcels(file)
             .then(response => dispatch(uploadSuccess(response)))
             .catch(error => dispatch(uploadFail(error)))
+    }
+}
+
+export function clearParcels() {
+    return {
+        type: CLEAR_RESULTS
     }
 }
 
