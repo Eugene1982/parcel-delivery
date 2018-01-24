@@ -1,16 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using Owin;
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
-using Microsoft.Owin.Logging;
 using OwinSelfHost.Domain;
 using OwinSelfHost.Helpers;
 using OwinSelfHost.Repository;
 using OwinSelfHost.Storage;
-using OwinSelfHost.WebApi;
 using Raven.Client.Documents.Session;
 
 namespace OwinSelfHost

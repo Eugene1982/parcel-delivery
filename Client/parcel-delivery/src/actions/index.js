@@ -1,5 +1,5 @@
 import * as API from '../utils/API'
-import { GET_DEPARTMENTS, ADD_DEPARTMENT, UPLOAD_DOCUMENT_SUCCESS, UPLOAD_DOCUMENT_FAIL, CLEAR_RESULTS } from '../utils/constants'
+import { GET_DEPARTMENTS, ADD_DEPARTMENT, DELETE_DEPARTMENT, UPLOAD_DOCUMENT_SUCCESS, UPLOAD_DOCUMENT_FAIL, CLEAR_RESULTS } from '../utils/constants'
 
 
 export function getDepartments() {
@@ -24,6 +24,17 @@ export function addDepartment(department) {
     }
 }
 
+export function deleteDepartment(name){
+    return dispatch => {
+        API.deleteDepartment(name).then(p => {
+            dispatch({
+                type: DELETE_DEPARTMENT,
+                name
+            })
+        })
+    }
+}
+
 export function uploadSuccess(parcels) {
     return {
         type: UPLOAD_DOCUMENT_SUCCESS,
@@ -34,7 +45,7 @@ export function uploadSuccess(parcels) {
 export function uploadFail(error) {
     return {
         type: UPLOAD_DOCUMENT_FAIL,
-        error: error.message,
+        error,
     };
 }
 
@@ -42,7 +53,7 @@ export function uploadParcels(file) {
     return dispatch => {
         API.sendParcels(file)
             .then(response => dispatch(uploadSuccess(response)))
-            .catch(error => dispatch(uploadFail(error)))
+            .catch(error => error.then(message => dispatch(uploadFail(message))))
     }
 }
 

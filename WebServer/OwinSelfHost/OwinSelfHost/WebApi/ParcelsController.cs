@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Newtonsoft.Json;
 using OwinSelfHost.Domain;
-using OwinSelfHost.Repository;
 
 namespace OwinSelfHost.WebApi
 {
@@ -39,7 +38,7 @@ namespace OwinSelfHost.WebApi
                 HttpResponseMessage erroResponseMessage =
                     new HttpResponseMessage(HttpStatusCode.InternalServerError)
                     {
-                        Content = new StringContent(exception.Message)
+                        Content = new StringContent(exception.Message, Encoding.UTF8, "application/json")
                     };
                 return erroResponseMessage;
             }

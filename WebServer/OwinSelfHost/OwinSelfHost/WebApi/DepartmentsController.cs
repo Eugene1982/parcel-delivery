@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Http;
 using OwinSelfHost.Domain;
 using OwinSelfHost.Repository;
@@ -36,9 +33,10 @@ namespace OwinSelfHost.WebApi
             repository.AddDepartment(department);
         }
 
-       // DELETE api/departments/5 
-        public void Delete(int id)
+       // DELETE api/departments/name 
+        public void Delete(string id)
         {
+            repository.DeleteDepartment(id);
         }
     }
 }

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 using OwinSelfHost.Helpers;
 using OwinSelfHost.Repository;
 
@@ -26,7 +22,7 @@ namespace OwinSelfHost.Domain
             var departments = repository.GetAllDepartments();
             foreach (Parcel parcel in parcels)
             {
-                var department = departments.Where(x =>
+                Department department = departments.Where(x =>
                                          x.PriceStart.HasValue && parcel.Price > x.PriceStart)
                                      .OrderByDescending(x => x.CreatedAt)
                                      .FirstOrDefault() ?? departments.Where(x =>
@@ -34,8 +30,11 @@ namespace OwinSelfHost.Domain
                                          parcel.Weight >= x.WeightMin && parcel.Weight < x.WeightMax)
                                      .OrderByDescending(x => x.CreatedAt)
                                      .FirstOrDefault();
-
-                parcel.DepartmentName = department != null ? department.Name : String.Empty;
+                if (department == null)
+                {
+                    throw new Exception($"There is no department to procced the parcel with weight: {parcel.Weight} and price: {parcel.Price}");
+                }
+                parcel.DepartmentName = department.Name;
             }
 
             return parcels.ToArray();

@@ -258,5 +258,66 @@ namespace OwinSelfHost.Specs
                 
             }
         }
+
+        public class When_distributing_parcels_and_department_does_not_exist
+        {
+            private ParcelsController controller;
+            private HttpResponseMessage response;
+
+            private string xml = @"<Container>
+            <Id>68465468</Id>
+            <ShippingDate>2016-07-22T00:00:00+02:00</ShippingDate>
+            <parcels>
+                   <Parcel>
+                      <Sender>
+                        <Name>Klaas</Name>
+                        <Address>
+                          <Street>Uranusstraat</Street>
+                          <HouseNumber>22</HouseNumber>
+                          <PostalCode>2402AE</PostalCode>
+                          <City>Alphen a/d Rijn</City>
+                        </Address>
+                      </Sender>
+                      <Receipient>
+                        <Name>Piet</Name>
+                        <Address>
+                           <Street>Schenklaan</Street>
+                           <HouseNumber>22</HouseNumber>
+                           <PostalCode>2497AV</PostalCode>
+                           <City>Den Haag</City>
+                       </Address>
+                    </Receipient>
+                  <Weight>7</Weight>
+                  <Value>200</Value>
+                 </Parcel>
+            </parcels>
+            </Container>
+            ";
+            public When_distributing_parcels_and_department_does_not_exist()
+            {
+                controller = new ParcelsControllerBuilder().WithDepartments(new List<Department>
+                {
+                    new Department
+                    {
+                        Name = "Name1",
+                        WeightMin = 0,
+                        WeightMax = 1
+                    }
+                }).Build();
+
+                var request = new HttpRequestMessage
+                {
+                    Content = new StringContent(xml, Encoding.UTF8, "application/xml")
+                };
+
+                response = controller.Post(request).Result;
+            }
+
+            [Fact]
+            public void Then_it_should_throw()
+            {
+                response.StatusCode.ShouldBeEquivalentTo(HttpStatusCode.InternalServerError);
+            }
+        }
     }
 }

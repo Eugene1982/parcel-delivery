@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OwinSelfHost.Domain;
 using OwinSelfHost.Helpers;
 using OwinSelfHost.Repository;
-using Raven.Client.Documents.Session;
 
 namespace OwinSelfHost.Storage
 {

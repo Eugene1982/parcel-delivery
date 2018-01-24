@@ -11,6 +11,8 @@ namespace OwinSelfHost.Repository
 
         void AddDepartment(Department department);
 
+        void DeleteDepartment(string name);
+
         void ClearDepartments();
 
     }

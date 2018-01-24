@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Modal from 'react-modal'
 import { Route, Link, withRouter } from 'react-router-dom';
 import './App.css';
-import { getDepartments, addDepartment, uploadParcels, clearParcels } from '../actions';
+import { getDepartments, addDepartment, deleteDepartment, uploadParcels, clearParcels } from '../actions';
 import AddControl from './AddControl'
 import ParcelDetail from './ParcelDetail'
 
@@ -23,9 +23,15 @@ class App extends Component {
 
   addDepartment = (department) => {
     const { dispatch } = this.props
-    dispatch(addDepartment(department));
+    dispatch(addDepartment(department))
     dispatch(clearParcels())
     this.closeModal()
+  }
+
+  deleteDepartment = (name) => {
+    const { dispatch } = this.props
+    dispatch(deleteDepartment(name))
+    dispatch(clearParcels())
   }
 
   handleFileUpload = (event) => {
@@ -67,9 +73,10 @@ class App extends Component {
             <ul>
               {departments.map((item) => (
                 <li key={item.Name}>
-                  <Link to={`/${item.Name}`}> {item.Name}
+                  <Link to={`/${item.Name}`}> {item.Name} 
                     <div className="detail-counter">Amount: <p>{this.getParcelsCounter(item.Name)}</p></div>
                   </Link>
+                  <button onClick={() => this.deleteDepartment(item.Name)}>Delete Department</button>
                 </li>
               ))}
             </ul>

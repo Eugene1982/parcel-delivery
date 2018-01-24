@@ -2,8 +2,6 @@
 using System.Linq;
 using OwinSelfHost.Domain;
 using OwinSelfHost.Helpers;
-using OwinSelfHost.Storage;
-using Raven.Client.Documents.Linq.Indexing;
 using Raven.Client.Documents.Session;
 
 namespace OwinSelfHost.Repository
@@ -34,6 +32,13 @@ namespace OwinSelfHost.Repository
         public void AddDepartment(Department department)
         {
             session.Store(department);
+            session.SaveChanges();
+        }
+
+        public void DeleteDepartment(string name)
+        {
+            Department department = GetDepartment(name);
+            session.Delete(department);
             session.SaveChanges();
         }
 

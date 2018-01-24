@@ -26,7 +26,22 @@ export const sendParcels = (body) =>
             'Content-Type': 'application/xml'
         },
         body
-    }).then(res => res.json())
+    }).then(res => {
+        if (res.ok) {
+            return res.json()
+        } else {
+            throw res.text()
+        }
+    })
+    
+export const deleteDepartment = (name) =>
+    fetch(`${api}/departments/${name}`, {
+        method: 'DELETE',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        }
+    }).then(name)
 
 
 
